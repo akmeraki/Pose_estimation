@@ -1,12 +1,12 @@
-# Pose Estimation 
+# Pose Estimation
 
 <p align="center">
-<img src="https://github.com/akmeraki/Semantic_Segmentation/blob/master/images/Gif.gif">
+<img src="https://github.com/akmeraki/Pose_estimation/blob/master/Images/Pose_estimation.gif">
 </p>
 
 
 ### Overview
-The objective of this project is to make a Convolutional Neural Network do a pixel wise classification of multiple objects in the scene (i.e cars, pedestrians, trees, roads etc.).
+The objective of this project is to make a Convolutional Neural Network do a pose estimation of people in the COCO keypoints dataset. 
 
 
 ### Dependencies
@@ -23,15 +23,15 @@ Please utilize the environment file to install related packages.
 - [Scipy](https://www.scipy.org)
 
 ### Files in this repo
-- `Semantic_Segmentation.ipynb` - The jupyter notebook used to build and train the model.
-- `Notes folder` - Contains the Notes taken, Paper summaries and Documents taken.
-- `Image folder` - Contains the samples images of the training data and model .
-- `cityscapes.ipynb` - Jupyter notebook with some visualization and preprocessing of the Cityscape dataset.
-- `helper_cityscapes.py` - python program for images pre- and  post- processing for the Cityscape dataset.
-
+- `Images` - Contains the samples images of the training data, gifs and model .
+- `main` - Model file , generate batch file , Config file, train and test file.
+- `lib` - Contains base resnet and other utils.
+- `tool` - tool to extract pose info from COCO.
+- `Output` - outputs the test images , model and log files.
+s
 ### Architecture
 <p align="center">
-<img src="https://github.com/akmeraki/Semantic_Segmentation/blob/master/images/fcn_arch_vgg16.png">
+<img src="https://github.com/akmeraki/Pose_estimation/blob/master/Images/DL.png">
 </p>
 
 A Fully Convolutional Network (FCN-8 Architecture developed at Berkeley, see [paper](https://people.eecs.berkeley.edu/~jonlong/long_shelhamer_fcn.pdf) ) was applied for the project. It uses VGG16 pretrained on ImageNet as an encoder.
