@@ -40,16 +40,25 @@ s
 <img src="https://github.com/akmeraki/Pose_estimation/blob/master/Images/DL.png">
 </p>
 
+We employ ResNet-50 Architecture as our basic architecture. We add 4 deconvolution layers to the end of the
+ResNet-50 architecture to produce heatmaps of 64x48 for each keypoint. To scale this architecture to multiple people we employ an object detection algorithm to predict bounding boxes for each human in an image. We then train our ResNet architecture to predict the pose from each bounding box separately. COCO dataset has bounding boxes built-in which makes it easier for us to train. While for testing, we use YOLO-V2 object detection architecture pretrained on COCO dataset images for generating bounding boxes.
+
 #### Holistic attention
 <p align="center">
 <img src="https://github.com/akmeraki/Pose_estimation/blob/master/Images/attention_viz_com.jpg" alt="drawing" width="600">
 </p>
+Holistic attention works by attending the whole image of the human body ignoring the background. From previous research work, it is evident that more contextual information leads to better localization of key points. We achieve this by attending images in various scales. Specifically, we use attention in final 4 layers of deconvolution each of shape 8x6, 16x12, 32x24, 64x48. We use k-nearest neighbor upsampling to make each attention map of shape 64x48. We finally add these attention-maps and then attend
+the final deconvolution layer. Note that here although we create attention maps from each deconvolution layer, we do not attend every layer. Instead, we attend only the output from the final deconvolution layer. By doing this we preserve contextual information from various scales as well as
+the information flowed through deconvolution layers. For holistic attention, we experimented with softmax and conditional random field attention. Gaussian attention is not a good candidate since we want to attend the whole human body with similar weights. Also, spatial transforms are not great candidates since it only does cropping and our network would still have non-useful background information. CRF attention in fig 3 (a) takes into consideration the local pattern spatial correlations unlike global spatial soft-
+max. Since we want to attend continuous parts of image, softmax attention did not work as expected. CRF attention works best for holistic attention.
 
 ### Part-wise Attention
 <p align="center">
 <img src="https://github.com/akmeraki/Pose_estimation/blob/master/Images/pjimage.jpg"alt="drawing" width="600">
 </p>
-
+Part-wise attention works by attending only parts of the human body. This, combined with Holistic attention, works like a hierarchical attention model wherein we first attend the whole body and then attend parts of the human body. We introduce part-wise attention model by taking input from the holistic attention and then attending them for 17 key points. Gaussian attention and Spatial Transforms attention
+worked as expected but the predictive power of the network did not increase significantly. We believe this is due to the fact that when localizing a keypoint, looking only at one keypoint might not help as much as looking at 2 or 3 successive or symmetric keypoints would. Although softmax attention captures this information, since it does not take spatial correlations into account, the network takes more
+time than Spatial CRF to achieve comparable performance. Therefore, Spatial CRF in fig 3 (b) works the best for Part-wise attention maps as well.
 ### Results
 
 ### How to Run the Model
