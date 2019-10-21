@@ -6,8 +6,13 @@
 
 
 ### Overview
-The objective of this project is to make a Convolutional Neural Network do a pose estimation of people in the COCO keypoints dataset. 
+Human pose estimation problem tackles the issue of localization of human body joints. There
+are many complex architectures specifically for Human Pose Estimation problem with significant
+differences but similar accuracy. Several complex architectures will still come up.
 
+So there is a need to set a new baseline with minimal changes to existing, problem independent, architectures that are suitable for any problem in computer vision. We aim to address the problem of
+estimating the poses of single and multi human instances in multiple images existing in the MS
+COCO (Common Objects in Context) dataset. We explored the possibility of adding deconvolution layers at the end of a ResNet architecture. We also explored various attention based mechanisms that can provide better localization in the context of Pose Estimation.
 
 ### Dependencies
 
@@ -27,6 +32,7 @@ Please utilize the environment file to install related packages.
 - `main` - Model file , generate batch file , Config file, train and test file.
 - `lib` - Contains base resnet and other utils.
 - `tool` - tool to extract pose info from COCO.
+- `With Attention` - Attention mechanism added to the Network.
 - `Output` - outputs the test images , model and log files.
 s
 ### Architecture
@@ -34,16 +40,22 @@ s
 <img src="https://github.com/akmeraki/Pose_estimation/blob/master/Images/DL.png">
 </p>
 
-A Fully Convolutional Network (FCN-8 Architecture developed at Berkeley, see [paper](https://people.eecs.berkeley.edu/~jonlong/long_shelhamer_fcn.pdf) ) was applied for the project. It uses VGG16 pretrained on ImageNet as an encoder.
-Decoder is used to upsample features, extracted by the VGG16 model, to the original image size. The decoder is based on transposed convolution layers.
+#### Holistic attention
+<p align="center">
+<img src="https://github.com/akmeraki/Pose_estimation/blob/master/Images/attention_viz_com.jpg">
+</p>
 
-The goal is to assign each pixel of the input image to the appropriate class (road, backgroung, etc). So, it is a classification problem, that is why, cross entropy loss was applied.
+### Part-wise Attention
+<p align="center">
+<img src="https://github.com/akmeraki/Pose_estimation/blob/master/Images/pjimage.jpg">
+</p>
 
+### Results
 
 ### How to Run the Model
-You can clone the repository. Then install the required dependencies. Open a jupyter lab or jupyter notebook console and Implement the notebook- `Semantic_Segmentation.ipynb`.
+You can clone the repository. Then install the required dependencies. Run the Train and test python files in the With Attention folder.
 
 
 ### About the Dataset
-This Model was trained using a dataset size of 5000 images.
-Link to the cityscapes Dataset: https://www.cityscapes-dataset.com/examples/#fine-annotations
+
+Link to the MS COCO Dataset:http://cocodataset.org/#keypoints-2019
