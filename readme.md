@@ -42,7 +42,7 @@ s
 
 #### Holistic attention
 <p align="center">
-<img src="https://github.com/akmeraki/Pose_estimation/blob/master/Images/attention_viz_com.jpg">
+<img src="https://github.com/akmeraki/Pose_estimation/blob/master/Images/attention_viz_com.jpg" alt="drawing" width="200">
 </p>
 
 ### Part-wise Attention
