@@ -60,10 +60,10 @@ worked as expected but the predictive power of the network did not increase sign
 time than Spatial CRF to achieve comparable performance. Therefore, Spatial CRF works the best for Part-wise attention maps as well.
 
 ### Results
-<p float="left">
-  <img src="https://github.com/akmeraki/Pose_estimation/blob/master/Images/0.jpg" width="300" />
-  <img src="https://github.com/akmeraki/Pose_estimation/blob/master/Images/221.jpg" width="300" />
-  <img src="https://github.com/akmeraki/Pose_estimation/blob/master/Images/35.jpg" width="300" />
+<p float="center">
+  <img src="https://github.com/akmeraki/Pose_estimation/blob/master/Images/0.jpg" width="400" />
+  <img src="https://github.com/akmeraki/Pose_estimation/blob/master/Images/221.jpg" width="400" />
+  <img src="https://github.com/akmeraki/Pose_estimation/blob/master/Images/35.jpg" width="400" />
 </p>
 
 
